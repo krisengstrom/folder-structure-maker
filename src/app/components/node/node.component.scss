@@ -1,0 +1,31 @@
+li {
+    div {
+        height:30px;
+        padding-left:10px;
+
+        &:before {
+            content: '';
+            background:url('../../../assets/img/file-regular.svg') no-repeat;
+            width:20px;
+            height:20px;
+            display:inline-block;
+        }
+
+        .add, .delete {
+            display:none;
+            margin:0 5px;
+        }
+        &:hover >.add, &:hover >.delete {
+            display:inline-block;
+        }
+        label {
+            padding:0 10px;
+        }
+    }
+    &.folder {
+        >div:before {
+            background:url('../../../assets/img/folder-open-regular.svg') no-repeat;
+        }
+    }
+
+}

@@ -1,0 +1,16 @@
+<li [class.folder]="data.type == 'folder'" *ngIf="data">
+    <div>
+        {{data.name}}
+        <ng-container *ngIf="data.type == 'unset'">
+            <input type="text" name="name" [(ngModel)]="data.draft.name" required [ngModelOptions]="{standalone: true}">
+            <label>File<input type="radio" name="type" value="file" [(ngModel)]="data.draft.type"></label>
+            <label>Folder<input type="radio" name="type" value="folder" [(ngModel)]="data.draft.type"></label>
+            <button (click)="save()">Save</button> <button (click)="delete()">Cancel</button>
+        </ng-container>
+        <button title="Add node" class="add" (click)="add()" *ngIf="data.type == 'folder'">+</button>
+        <button title="Delete node" class="delete" (click)="delete()" *ngIf="data.name != ''">-</button>
+    </div> 
+    <ul *ngIf="data.children.length > 0">
+        <app-node *ngFor="let child of data.children" [data]="child"></app-node>
+    </ul>
+</li>

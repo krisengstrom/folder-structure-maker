@@ -1,0 +1,8 @@
+<button (click)="add()">Add folder to root</button>
+<ul *ngIf="root">
+    <app-node [data]="root"></app-node>
+</ul>
+
+<textarea readonly>
+    {{ toString() }}
+</textarea>
