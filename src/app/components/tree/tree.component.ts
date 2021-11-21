@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { NodeModel } from '../../models/node.model';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-tree',
@@ -9,38 +8,22 @@ import { NodeModel } from '../../models/node.model';
 })
 export class TreeComponent implements OnInit {
 
-  public root: NodeModel = null;
-
-  constructor(private http: HttpClient) { }
+  constructor(public data: DataService) { }
 
   ngOnInit() {
-
-    this.http.get<NodeModel[]>('assets/data/structure.json').subscribe((response) => {
-      this.root = {
-        name: '/',
-        type: 'folder',
-        children: response,
-        id: 'root'
-      }
-    });
-
+    this.data.getData();
   }
 
-  add() {
-    this.root.children.push({
+  addToRoot() {
+    this.data.root.children.push({
       type: 'unset',
       name: '',
       children: [],
-      id: '',
+      id: this.data.getId(),
       draft: {
         name: '',
         type: 'folder'
       }
     });
   }
-
-  toString() {
-    return JSON.stringify(this.root);
-  }
-
 }
