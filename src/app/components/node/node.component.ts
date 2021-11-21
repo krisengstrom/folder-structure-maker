@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Data } from '@angular/router';
 import { NodeModel } from '../../models/node.model';
 import { DataService } from '../../services/data.service';
 
